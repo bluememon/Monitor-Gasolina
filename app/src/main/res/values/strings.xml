@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Monitor Gasolina</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="title_activity_agregar_registro">agregar_registro</string>
+    <string name="agregar_registro_full_kilometraje">Kilometraje Total</string>
+    <string name="agregar_registro_tipo_gasolina">Tipo de Gasolina</string>
+    <string name="agregar_registro_precio_litro">Precio por Litro</string>
+    <string name="agregar_registro_qty_liters">Litros Totales Servidos</string>
+    <string name="agregar_registro_total_precio">Kilometraje Total</string>
+    <string name="agregar_registro_sucursal_gasolinera">Sucursal Gasolinera</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contraseña (opcional)</string>
+    <string name="action_sign_in">Ingresar o Registrarse</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="error_invalid_email">El correo es inválido</string>
+    <string name="error_invalid_password">La contraseña es muy corta</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">Campo requerido</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_agregar_automovil">AgregarAutomovil</string>
+    <string name="title_activity_listado_automoviles">ListadoAutomoviles</string>
+</resources>
