@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.bluecoreservices.monitorgasolina">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.bluecoreservices.monitorgasolina">
 
+<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+<uses-permission android:name="android.permission.INTERNET"/>
 <!-- To auto-complete the email text field in the login form with the user's emails -->
 <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -9,14 +11,14 @@ package="com.bluecoreservices.monitorgasolina">
 
 <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
     android:supportsRtl="true" android:theme="@style/AppTheme">
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyD31WSMvYNyFY5tvdPN1JAIulP-fw_jDIk" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBHoOhDAAOXSppejhRX6Hvn6_T4eli5Lnk" />
 
     <activity android:name=".MainActivity" android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar">
-        <!--<intent-filter>
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>-->
+        </intent-filter>
     </activity>
     <activity android:name=".reportes.agregar_registro" android:label="@string/title_activity_agregar_registro"
         android:parentActivityName=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
@@ -30,13 +32,6 @@ package="com.bluecoreservices.monitorgasolina">
     <activity android:name=".automoviles.ListadoAutomoviles" android:label="@string/title_activity_listado_automoviles"
         android:parentActivityName=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
         <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.bluecoreservices.monitorgasolina.MainActivity" />
-    </activity>
-    <activity android:name="com.bluecoreservices.monitorgasolina.MapsActivity" android:label="@string/title_activity_maps">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
     </activity>
 </application>
 
