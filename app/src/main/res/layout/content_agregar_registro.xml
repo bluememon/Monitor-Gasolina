@@ -44,17 +44,13 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/tipo_gasolina"
-                        android:layout_width="match_parent"
+                    <Spinner
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/agregar_registro_tipo_gasolina"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"/>
-
+                        android:id="@+id/tipo_gasolina"
+                        android:layout_gravity="center"
+                        android:layout_centerInParent="true"
+                        android:layout_alignParentStart="true" />
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
