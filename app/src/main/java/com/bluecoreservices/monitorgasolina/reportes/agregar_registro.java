@@ -48,8 +48,10 @@ public class agregar_registro extends AppCompatActivity {
 
     private TextView stationName;
     private String stationId;
-    private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
-            new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
+    public String userId = "1"; //temporalmente para pruebas
+    public String selectedGasType;
+    /*private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
+            new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));*/
 
 
     @Override
@@ -124,7 +126,7 @@ public class agregar_registro extends AppCompatActivity {
 
         class LoginAsync  extends AsyncTask<String, Void, JSONObject> {
             private Dialog loadingDialog;
-            private final String url = "http://app.bluecoreservices.com/webservices/getCategorias.php";
+            private final String url = "http://mg.bluecoreservices.com/api/classes/lists.class.php";
 
             String charset = "UTF-8";
             HttpURLConnection conn;
@@ -138,18 +140,18 @@ public class agregar_registro extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loadingDialog = ProgressDialog.show(add_catego.this, "Please wait", "Loading...");
+                loadingDialog = ProgressDialog.show(agregar_registro.this, "Please wait", "Loading...");
             }
 
             @Override
             protected JSONObject doInBackground(String... params) {
 
-                String uname = idPaciente;
+                String accion = userId;
 
                 sbParams = new StringBuilder();
 
                 try {
-                    sbParams.append("idPaciente").append("=").append(URLEncoder.encode(uname, charset));
+                    sbParams.append("idPaciente").append("=").append(URLEncoder.encode(accion, charset));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -211,14 +213,14 @@ public class agregar_registro extends AppCompatActivity {
                 Log.i(PAGINA_DEBUG, result.toString());
                 loadingDialog.dismiss();
 
-                Spinner listaCatego = (Spinner)findViewById(R.id.spinner_catego);
+                Spinner listaCatego = (Spinner)findViewById(R.id.tipo_gasolina);
                 Integer listSize = listaCatego.getCount() -1;
 
                 JSONArray categoriaLista = null;
                 ArrayList<String> nombres = new ArrayList<String>();
                 final ArrayList<String> ids = new ArrayList<String>();
 
-                ArrayAdapter adapter = new ArrayAdapter(add_catego.this, android.R.layout.simple_spinner_item, nombres);
+                ArrayAdapter adapter = new ArrayAdapter(agregar_registro.this, android.R.layout.simple_spinner_item, nombres);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 if (listSize > 0){
@@ -245,8 +247,8 @@ public class agregar_registro extends AppCompatActivity {
 
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            selectedCatego = ids.get(position);
-                            Log.i(PAGINA_DEBUG, selectedCatego);
+                            selectedGasType = ids.get(position);
+                            Log.i(PAGINA_DEBUG, selectedGasType);
                         }
 
                         @Override
