@@ -25,4 +25,11 @@
     <string name="title_activity_listado_automoviles">ListadoAutomoviles</string>
     <string name="title_activity_main2_activity_test">Main2ActivityTest</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menuVehicle">Vehiculos</string>
+    <string name="menuReport">Reportes</string>
 </resources>
