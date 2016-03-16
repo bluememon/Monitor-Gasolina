@@ -1,9 +1,10 @@
 package com.bluecoreservices.monitorgasolina;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bluecoreservices.monitorgasolina.automoviles.ListadoAutomoviles;
+import com.bluecoreservices.monitorgasolina.automoviles.automobileList;
+import com.bluecoreservices.monitorgasolina.reportes.ReportList;
 import com.bluecoreservices.monitorgasolina.reportes.agregar_registro;
 
 public class Main2Activity extends AppCompatActivity
@@ -105,12 +107,16 @@ public class Main2Activity extends AppCompatActivity
     }
 
     public void seccion_vehiculos(){
-        Intent abrirRegistro = new Intent(this, ListadoAutomoviles.class);
-        startActivity(abrirRegistro);
+        automobileList listaAutos = new automobileList();
+        listaAutos.setArguments(getIntent().getExtras());
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, listaAutos).commit();
     }
 
     public void seccion_reportes(){
-        Intent abrirRegistro = new Intent(this, agregar_registro.class);
-        startActivity(abrirRegistro);
+        ReportList listaReportes = new ReportList();
+        listaReportes.setArguments(getIntent().getExtras());
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, listaReportes).commit();
     }
 }
