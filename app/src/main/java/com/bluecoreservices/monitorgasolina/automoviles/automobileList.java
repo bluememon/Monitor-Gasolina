@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,18 +36,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link automobileList.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link automobileList#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class automobileList extends Fragment {
     public final static String PAGINA_DEBUG = "Lista autos Frag";
 
-
+    public RecyclerView mRecyclerView;
+    public RecyclerView.Adapter mAdapter;
+    public RecyclerView.LayoutManager mLayoutManager;
 
 
     public automobileList() {
@@ -55,17 +51,22 @@ public class automobileList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            /*mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);*/
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_automobile_list, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_automobile_list, container, false);
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.automobile_list);
+        mLayoutManager = new LinearLayoutManager(rootView.getContext());
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+       return rootView;
     }
 
     @Override
@@ -169,15 +170,49 @@ public class automobileList extends Fragment {
 
             @Override
             protected void onPostExecute(JSONObject result) {
-                Log.i(PAGINA_DEBUG, result.toString());
                 loadingDialog.dismiss();
 
-                /*Spinner listaCatego = (Spinner)findViewById(R.id.tipo_gasolina);
-                Integer listSize = listaCatego.getCount() -1;
+                //Integer listSize = mAdapter.getCount() -1;
 
-                JSONArray categoriaLista = null;
-                ArrayList<String> nombres = new ArrayList<String>();
-                final ArrayList<String> ids = new ArrayList<String>();
+                JSONArray listaVehiculos = null;
+                try {
+                    listaVehiculos = result.getJSONArray("VehicleLists");
+
+                    ArrayList<String> brands = new ArrayList<String>();
+                    ArrayList<String> models = new ArrayList<String>();
+                    ArrayList<String> years = new ArrayList<String>();
+                    final ArrayList<String> ids = new ArrayList<String>();
+
+                    if (listaVehiculos.length() > 0){
+                        /*brands.clear();
+                        mAdapter.notifyDataSetChanged();*/
+                    }
+
+                    for (int i = 0; i < listaVehiculos.length(); i++){
+
+                        JSONObject categoriaVehiculo = listaVehiculos.getJSONObject(i);
+
+                        brands.add(categoriaVehiculo.getString("brand"));
+                        models.add(categoriaVehiculo.getString("model"));
+                        years.add(categoriaVehiculo.getString("year"));
+                        ids.add(categoriaVehiculo.getString("id"));
+                    }
+
+                    Log.i(PAGINA_DEBUG, brands.toString());
+                    Log.i(PAGINA_DEBUG, models.toString());
+                    Log.i(PAGINA_DEBUG, years.toString());
+                    Log.i(PAGINA_DEBUG, ids.toString());
+
+                    ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.automobile_list_element);
+
+
+
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                /*
 
                 ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, nombres);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -185,9 +220,9 @@ public class automobileList extends Fragment {
                 if (listSize > 0){
                     nombres.clear();
                     adapter.notifyDataSetChanged();
-                }
+                }*/
 
-                try {
+                /*try {
                     categoriaLista = result.getJSONArray("categorias");
 
 
